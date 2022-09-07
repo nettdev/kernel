@@ -4,6 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>Mobnet.SharedKernel</PackageId>
+    <PackageVersion>1.1</PackageVersion>
+    <Title>Mobnet SharedKernel</Title>
+    <Authors>Jeziel Moura</Authors>
+    <Company>Mobnet</Company>
+    <PackageDescription>Shared Kernel for Mobnet Software Solutions</PackageDescription>
+    <RepositoryUrl>https://github.com/mobnet/shared-kernel</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
