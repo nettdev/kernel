@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>Mobnet.SharedKernel</RootNamespace>
+    <AssemblyName>Mobnet.SharedKernel</AssemblyName>
     <PackageId>Mobnet.SharedKernel</PackageId>
     <PackageVersion>0.0.0</PackageVersion>
     <Title>Mobnet SharedKernel</Title>
@@ -20,6 +22,8 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.2.1" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.0" />
   </ItemGroup>
 
 </Project>

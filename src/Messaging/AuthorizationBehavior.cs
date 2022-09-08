@@ -15,7 +15,8 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
         var authorizationAttribute = Attribute.GetCustomAttribute(request.GetType(), typeof(AuthorizeAttribute)) as AuthorizeAttribute;
-        var permissions = _httpContextAcessor.HttpContext?.User.FindFirst(c => c.Type.Equals("permissions"))?.Value;
+        var user = _httpContextAcessor.HttpContext?.User;
+        var permissions = user?.Claims.FirstOrDefault(c => c.Type.Equals("permissions", StringComparison.OrdinalIgnoreCase))?.Value;
 
         if (authorizationAttribute is not null)
         {

@@ -23,4 +23,37 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura 
+
+    - name: budge
+      uses: irongut/CodeCoverageSummary@v1.2.0
+      with:
+        filename: test/UnitTest/coverage.cobertura.xml
+        badge: true
+        fail_below_min: false
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
+
+    - name: install report generator
+      run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.9
+
+    - name: run report generator
+      run: reportgenerator -reports:"test/UnitTest/coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html
+
+    - name: upload report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: coveragereport
+        retention-days: 7

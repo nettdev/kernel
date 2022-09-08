@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Mobnet.SharedKernel;
 
 #nullable disable
 
+[ExcludeFromCodeCoverage]
 public abstract class Enumeration : IComparable
 {
     public string Name { get; private set; }

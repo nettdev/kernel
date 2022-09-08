@@ -1,7 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Mobnet.SharedKernel;
 
 #nullable disable
 
+[ExcludeFromCodeCoverage]
 public abstract class ValueObject
 {
     public override bool Equals(object obj)

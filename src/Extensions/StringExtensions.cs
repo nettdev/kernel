@@ -17,11 +17,6 @@ public static class StringExtensions
         return Uri.EscapeDataString(url);
     }
 
-    public static bool NotEqual(this string original, string compareTo)
-    {
-        return !original.Equals(compareTo);
-    }
-
     public static bool IsEmail(this string field)
     {
         return field.IsPresent() && EmailRegex.IsMatch(field);
@@ -35,26 +30,6 @@ public static class StringExtensions
     public static bool IsPresent(this string value)
     {
         return !IsNullOrWhiteSpace(value);
-    }
-
-    private static string UrlCombine(string path1, string path2)
-    {
-        path1 = path1.TrimEnd('/') + "/";
-        path2 = path2.TrimStart('/');
-
-        return Path.Combine(path1, path2)
-            .Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-    }
-
-    public static string UrlPathCombine(this string path1, params string[] path2)
-    {
-        path1 = path1.TrimEnd('/') + "/";
-        foreach (var s in path2)
-        {
-            path1 = UrlCombine(path1, s).Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-        }
-
-        return path1;
     }
 
     public static string TruncateSensitiveInformation(this string part)
@@ -134,45 +109,6 @@ public static class StringExtensions
         }
         Array.Resize(ref onlyNumbers, lastIndex);
         return new string(onlyNumbers);
-    }
-
-    public static string FromBase64ToString(this string str)
-    {
-        return (Encoding.UTF8).GetString(FromBase64(str));
-    }
-
-    public static byte[] FromBase64(this string str)
-    {
-        return Convert.FromBase64String(str);
-    }
-    public static string ToBase64(this string str)
-    {
-        return ToBase64((Encoding.UTF8).GetBytes(str));
-    }
-
-    public static string ToBase64(this byte[] data)
-    {
-        return Convert.ToBase64String(data);
-    }
-    public static byte[] FromPlainHexDumpStyleToByteArray(this string hex)
-    {
-        if (hex.Length % 2 == 1)
-            throw new Exception("The binary key cannot have an odd number of digits");
-
-        byte[] arr = new byte[hex.Length >> 1];
-
-        for (int i = 0; i < hex.Length >> 1; ++i)
-        {
-            arr[i] = (byte)((GetHexVal(hex[i << 1]) << 4) + (GetHexVal(hex[(i << 1) + 1])));
-        }
-
-        return arr;
-    }
-
-    private static int GetHexVal(char hex)
-    {
-        int val = (int)hex;
-        return val - (val < 58 ? 48 : 55);
     }
 
     public static string Capitalize(this string value, bool isRestLower)
