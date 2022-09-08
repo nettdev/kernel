@@ -28,7 +28,7 @@ jobs:
     - name: budge
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
-        filename: test/UnitTest/coverage.cobertura.xml
+        filename: test/coverage.cobertura.xml
         badge: true
         fail_below_min: false
         format: markdown
@@ -49,7 +49,7 @@ jobs:
       run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.9
 
     - name: run report generator
-      run: reportgenerator -reports:"test/UnitTest/coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html
+      run: reportgenerator -reports:"test/coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html
 
     - name: upload report
       uses: actions/upload-artifact@v3
