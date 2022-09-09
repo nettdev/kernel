@@ -3,12 +3,14 @@ namespace Mobnet.SharedKernel;
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
 public class AuthorizeAttribute : Attribute
 {
-    public AuthorizeAttribute(string permission, string description) 
+    public AuthorizeAttribute(string permission, string group, string label) 
     {
         Permission = permission;
-        Description = description;
+        Group = group;
+        Label = label;
     }
 
-    public string Permission { get; private set; }
-    public string Description { get; private set; }
+    public string Permission { get; }
+    public string Group { get; }
+    public string Label { get; }
 }

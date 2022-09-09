@@ -7,13 +7,15 @@ public class AuthorizeAttributeTest
     {
         //Arrange
         var permission = "AddUser";
-        var description = "Adicionar Usuários";
+        var group = "Usuários";
+        var label = "Adicionar";
 
         //Act
-        var authorizeAttribute = new AuthorizeAttribute(permission, description);
+        var authorizeAttribute = new AuthorizeAttribute(permission, group, label);
 
         //Assert
         Assert.Equal(authorizeAttribute.Permission, permission);
-        Assert.Equal(authorizeAttribute.Description, description);
+        Assert.Equal(authorizeAttribute.Group, group);
+        Assert.Equal(authorizeAttribute.Label, label);
     }
 }

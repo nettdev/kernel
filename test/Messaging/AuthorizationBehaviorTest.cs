@@ -69,7 +69,7 @@ public class AuthorizationBehaviorTest
     }
 }
 
-[Authorize("AddUser", "Adicionar Usuários")]
+[Authorize("AddUser", "Usuários", "Novo")]
 class AddUserCommand : IRequest
 {
     public string Name { get; set; }
