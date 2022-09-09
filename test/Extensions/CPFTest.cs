@@ -16,6 +16,11 @@ public class CPFTest
     [InlineData("32534645656")]
     [InlineData("88519796000")]
     [InlineData("32523523535")]
+    [InlineData("00000000000")]
+    [InlineData("12345678900")]
+    [InlineData("09876543211")]
+    [InlineData("11718985411")]
+    [InlineData("07152178418")]
     [InlineData("")]
     public void Constructor_InvalidValue_ThrowDomainException(string cpfValue)
     {
