@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using System.Diagnostics.CodeAnalysis;
+using MediatR;
 
 namespace Mobnet.SharedKernel;
 
+[ExcludeFromCodeCoverage]
 public class Entity : IEquatable<Entity>
 {
     private List<INotification> _events;

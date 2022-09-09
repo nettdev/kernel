@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using FluentValidation.Results;
 
 namespace Mobnet.SharedKernel;
 
+[ExcludeFromCodeCoverage]
 public class DomainException : ValidationException
 {    
     public DomainException(string message) : base(message, new List<ValidationFailure> { new("DomainException", message) })
