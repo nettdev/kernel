@@ -13,6 +13,22 @@ public class JwtServiceTest
         _configuration = new Mock<IConfiguration>();
 
     [Fact]
+    public void CreateToken_EmptyClaims_ThrowArgumentNullException()
+    {
+        //Arrange
+        var jwtService = new JwtService(_configuration.Object);
+        var values = new List<Tuple<string, string>>();
+
+        _configuration.Setup(s => s["SecretKey"]).Returns(_secretKey);
+    
+        //Act
+        void act() => jwtService.CreateToken(values);
+    
+        //Assert
+        Assert.Throws<ArgumentNullException>(act);
+    }
+
+    [Fact]
     public void CreateToken_ReturnToken()
     {
         //Arrange

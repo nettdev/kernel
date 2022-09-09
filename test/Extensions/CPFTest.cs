@@ -13,9 +13,10 @@ public class CPFTest
     }
 
     [Theory]
-    [InlineData("88519996001")]
+    [InlineData("32534645656")]
     [InlineData("88519796000")]
-    [InlineData("27024042029")]
+    [InlineData("32523523535")]
+    [InlineData("")]
     public void Constructor_InvalidValue_ThrowDomainException(string cpfValue)
     {
         //Arrange

@@ -105,7 +105,7 @@ public class StringExtensionsTest
     public void Urlize_ReturnUrl()
     {
         //Arrange
-        var input = "Olá, não gosto de açaí";
+        var input = "-Olá, não gosto de açaí-";
         var expectedOutput = "ola-nao-gosto-de-acai";
 
         //Act

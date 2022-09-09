@@ -10,7 +10,7 @@ public struct Cnpj
     {
         _value = value;
 
-        if (value == null)
+        if (value.IsMissing())
             MakeInvalid();
 
         var identiqueDigits = true;
