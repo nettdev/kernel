@@ -12,11 +12,6 @@ public static class StringExtensions
     private static readonly Regex UrlizeRegex = new Regex(@"[^A-Za-z0-9_~]+", RegexOptions.Multiline | RegexOptions.Compiled);
     private static readonly Regex EmailRegex = new Regex(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", RegexOptions.Compiled);
 
-    public static string UrlEncode(this string url)
-    {
-        return Uri.EscapeDataString(url);
-    }
-
     public static bool IsEmail(this string field)
     {
         return field.IsPresent() && EmailRegex.IsMatch(field);
@@ -34,9 +29,6 @@ public static class StringExtensions
 
     public static string TruncateSensitiveInformation(this string part)
     {
-        if (!part.IsPresent())
-            return string.Empty;
-
         var truncatedString = new char[part.Length];
         truncatedString[0] = part[0];
 

@@ -47,7 +47,7 @@ public class AuthorizationBehaviorTest
         Task act() => behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
     
         //Assert
-        Assert.ThrowsAsync<UnauthenticatedException>(act);
+        Assert.ThrowsAsync<UnauthorizedException>(act);
     }
 
     [Fact]
@@ -72,7 +72,7 @@ public class AuthorizationBehaviorTest
 [Authorize("AddUser", "Adicionar Usuários")]
 class AddUserCommand : IRequest
 {
-
+    public string Name { get; set; }
 }
 
 class AddUserCommandHandler : IRequestHandler<AddUserCommand>

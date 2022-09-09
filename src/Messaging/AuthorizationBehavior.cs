@@ -24,7 +24,7 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
                 throw new UnauthenticatedException();
 
             if (!permissions.Split(";").Contains(authorizationAttribute.Permission))
-                throw new UnauthorizedAccessException();
+                throw new UnauthorizedException();
         }
 
         return await next();
