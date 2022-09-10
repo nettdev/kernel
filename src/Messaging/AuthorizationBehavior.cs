@@ -16,14 +16,14 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     {
         var authorizationAttribute = Attribute.GetCustomAttribute(request.GetType(), typeof(AuthorizeAttribute)) as AuthorizeAttribute;
         var user = _httpContextAcessor.HttpContext?.User;
-        var permissions = user?.Claims.FirstOrDefault(c => c.Type.Equals("permissions", StringComparison.OrdinalIgnoreCase))?.Value;
+        var permissions = user?.Claims.FirstOrDefault(c => c.Type.Equals("resources", StringComparison.OrdinalIgnoreCase))?.Value;
 
         if (authorizationAttribute is not null)
         {
             if (permissions is null)
                 throw new UnauthenticatedException();
 
-            if (!permissions.Split(";").Contains(authorizationAttribute.Permission))
+            if (!permissions.Split(";").Contains(authorizationAttribute.Resource))
                 throw new UnauthorizedException();
         }
 

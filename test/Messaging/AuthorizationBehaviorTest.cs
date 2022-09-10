@@ -41,7 +41,7 @@ public class AuthorizationBehaviorTest
 
         _httpContextAcessorMock
             .Setup(s => s.HttpContext.User.Claims)
-            .Returns(new List<Claim>{new Claim("permissions", "")});
+            .Returns(new List<Claim>{new Claim("resources", "")});
     
         //Act
         Task act() => behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
@@ -59,7 +59,7 @@ public class AuthorizationBehaviorTest
 
         _httpContextAcessorMock
             .Setup(s => s.HttpContext.User.Claims)
-            .Returns(new List<Claim>{new Claim("permissions", "AddUser")});
+            .Returns(new List<Claim>{new Claim("resources", nameof(AddUserCommand))});
     
         //Act
         var result = await behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
@@ -69,7 +69,7 @@ public class AuthorizationBehaviorTest
     }
 }
 
-[Authorize("AddUser", "Usuários", "Novo")]
+[Authorize(nameof(AddUserCommand))]
 class AddUserCommand : IRequest
 {
     public string Name { get; set; }

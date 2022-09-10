@@ -6,16 +6,12 @@ public class AuthorizeAttributeTest
     public void Constructor_SetParametersCorrectly() 
     {
         //Arrange
-        var permission = "AddUser";
-        var group = "Usuários";
-        var label = "Adicionar";
+        var resource = "AddUserCommand";
 
         //Act
-        var authorizeAttribute = new AuthorizeAttribute(permission, group, label);
+        var authorizeAttribute = new AuthorizeAttribute(resource);
 
         //Assert
-        Assert.Equal(authorizeAttribute.Permission, permission);
-        Assert.Equal(authorizeAttribute.Group, group);
-        Assert.Equal(authorizeAttribute.Label, label);
+        Assert.Equal(authorizeAttribute.Resource, resource);
     }
 }
