@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using MediatR;
 
 namespace Mobnet.SharedKernel;
@@ -7,9 +8,11 @@ namespace Mobnet.SharedKernel;
 public class Entity : IEquatable<Entity>
 {
     private List<INotification> _events;
+
+    [JsonIgnore]
     public IReadOnlyCollection<INotification> Events => _events.AsReadOnly();
 
-    public Guid Id { get; set; }
+    public Guid Id { get; protected set; }
 
     protected Entity() 
     {

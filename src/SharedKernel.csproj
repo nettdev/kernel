@@ -7,7 +7,7 @@
     <RootNamespace>Mobnet.SharedKernel</RootNamespace>
     <AssemblyName>Mobnet.SharedKernel</AssemblyName>
     <PackageId>Mobnet.SharedKernel</PackageId>
-    <PackageVersion>0.0.0</PackageVersion>
+    <PackageVersion>10.20.30</PackageVersion>
     <Title>Mobnet SharedKernel</Title>
     <Authors>Jeziel Moura</Authors>
     <Company>Mobnet</Company>
