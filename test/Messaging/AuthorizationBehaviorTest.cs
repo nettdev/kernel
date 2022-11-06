@@ -41,7 +41,7 @@ public class AuthorizationBehaviorTest
 
         _httpContextAcessorMock
             .Setup(s => s.HttpContext.User.Claims)
-            .Returns(new List<Claim>{new Claim("resources", "")});
+            .Returns(new List<Claim>{new Claim(ClaimTypes.Role, "")});
     
         //Act
         Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
@@ -59,7 +59,7 @@ public class AuthorizationBehaviorTest
 
         _httpContextAcessorMock
             .Setup(s => s.HttpContext.User.Claims)
-            .Returns(new List<Claim>{new Claim("resources", nameof(AddUserCommand))});
+            .Returns(new List<Claim>{new Claim(ClaimTypes.Role, nameof(AddUserCommand))});
     
         //Act
         var result = await behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
