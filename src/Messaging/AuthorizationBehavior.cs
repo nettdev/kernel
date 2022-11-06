@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
@@ -16,7 +17,7 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     {
         var authorizationAttribute = Attribute.GetCustomAttribute(request.GetType(), typeof(AuthorizeAttribute)) as AuthorizeAttribute;
         var user = _httpContextAcessor.HttpContext?.User;
-        var resources = user?.Claims.FirstOrDefault(c => c.Type.Equals("resources", StringComparison.OrdinalIgnoreCase))?.Value;
+        var resources = user?.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.Role))?.Value;
 
         if (authorizationAttribute is not null)
         {
