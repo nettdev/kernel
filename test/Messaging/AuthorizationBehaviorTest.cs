@@ -26,7 +26,7 @@ public class AuthorizationBehaviorTest
         var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object);
     
         //Act
-        Task act() => behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
+        Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
     
         //Assert
         Assert.ThrowsAsync<UnauthenticatedException>(act);
@@ -44,7 +44,7 @@ public class AuthorizationBehaviorTest
             .Returns(new List<Claim>{new Claim("resources", "")});
     
         //Act
-        Task act() => behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
+        Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
     
         //Assert
         Assert.ThrowsAsync<UnauthorizedException>(act);
@@ -62,7 +62,7 @@ public class AuthorizationBehaviorTest
             .Returns(new List<Claim>{new Claim("resources", nameof(AddUserCommand))});
     
         //Act
-        var result = await behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
+        var result = await behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
     
         //Assert
         Assert.IsType<Unit>(result);

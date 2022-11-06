@@ -12,18 +12,18 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         _httpContextAcessor = httpContextAcessor;
     }
 
-    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken token)
     {
         var authorizationAttribute = Attribute.GetCustomAttribute(request.GetType(), typeof(AuthorizeAttribute)) as AuthorizeAttribute;
         var user = _httpContextAcessor.HttpContext?.User;
-        var permissions = user?.Claims.FirstOrDefault(c => c.Type.Equals("resources", StringComparison.OrdinalIgnoreCase))?.Value;
+        var resources = user?.Claims.FirstOrDefault(c => c.Type.Equals("resources", StringComparison.OrdinalIgnoreCase))?.Value;
 
         if (authorizationAttribute is not null)
         {
-            if (permissions is null)
+            if (resources is null)
                 throw new UnauthenticatedException();
 
-            if (!permissions.Split(";").Contains(authorizationAttribute.Resource))
+            if (!resources.Split(";").Contains(authorizationAttribute.Resource))
                 throw new UnauthorizedException();
         }
 

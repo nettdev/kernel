@@ -22,7 +22,7 @@ public class ValidationBehaviorTest
         var behavior = new ValidatorBehavior<AddUserCommand, Unit>(new List<AddUserCommandValidator>{userValidator});
     
         //Act
-        var validationResult = await behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
+        var validationResult = await behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
     
         //Assert
         Assert.IsType<Unit>(validationResult);
@@ -37,7 +37,7 @@ public class ValidationBehaviorTest
         var behavior = new ValidatorBehavior<AddUserCommand, Unit>(new List<AddUserCommandValidator>{userValidator});
     
         //Act
-        Task act() => behavior.Handle(command, default(CancellationToken), _requestHandlerDelegateMock.Object);
+        Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
     
         //Assert
         Assert.ThrowsAsync<ValidationException>(act);
