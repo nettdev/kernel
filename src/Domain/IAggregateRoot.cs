@@ -1,3 +1,3 @@
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 public interface IAggregateRoot { }

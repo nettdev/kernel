@@ -4,7 +4,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 [ExcludeFromCodeCoverage]
 public class ExceptionHandlingMiddleware

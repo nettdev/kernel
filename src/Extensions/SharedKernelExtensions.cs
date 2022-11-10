@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 [ExcludeFromCodeCoverage]
-public static class SharedKernelExtensions
+public static class KernelExtensions
 {
-    public static void AddSharedKernel(this IServiceCollection services)
+    public static void AddKernel(this IServiceCollection services)
     {
         services.AddScoped<ITokenManager, TokenManager>();
     }

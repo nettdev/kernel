@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 [ExcludeFromCodeCoverage]
 public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where TEnum : Enumeration<TEnum>

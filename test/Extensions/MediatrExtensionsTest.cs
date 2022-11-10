@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace Nett.SharedKernel.UnitTest;
+namespace Nett.Kernel.UnitTest;
 
 public class MediatrExtensionsTest
 {

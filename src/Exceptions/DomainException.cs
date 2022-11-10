@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 [ExcludeFromCodeCoverage]
 public class DomainException : ValidationException

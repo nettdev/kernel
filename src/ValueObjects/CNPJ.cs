@@ -1,4 +1,4 @@
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 public struct Cnpj
 {

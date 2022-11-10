@@ -1,4 +1,4 @@
-namespace Nett.SharedKernel.UnitTest;
+namespace Nett.Kernel.UnitTest;
 
 public class CNPJTest
 {

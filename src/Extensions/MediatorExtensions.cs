@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 public static class MediatorExtensions
 {

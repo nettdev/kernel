@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 public interface ITokenManager
 {

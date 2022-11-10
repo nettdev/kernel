@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {

@@ -1,4 +1,4 @@
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class AuthorizeAttribute : Attribute

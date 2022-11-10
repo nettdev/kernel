@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Nett.SharedKernel;
+namespace Nett.Kernel;
 
 public class TokenManager : ITokenManager
 {
