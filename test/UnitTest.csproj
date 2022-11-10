@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <Target Name="GenerateHtmlCoverageReport" AfterTargets="GenerateCoverageResultAfterTest">
-    <ReportGenerator ReportFiles="./TestResults/*/coverage.cobertura.xml" TargetDirectory="./coverage-report" />
+    <ReportGenerator ReportFiles="./TestResults/*/coverage.cobertura.xml" TargetDirectory="../coverage-report" />
   </Target>
 
 </Project>
