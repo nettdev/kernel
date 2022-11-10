@@ -10,7 +10,7 @@ public class EnumerationTest
         var userType = UserType.FromName("Editor");
 
         //Assert
-        Assert.Equal(userType?.Value, 0);
+        Assert.Equal(0, userType?.Value);
     }
 
     [Fact]
@@ -20,7 +20,7 @@ public class EnumerationTest
         var userType = UserType.FromValue(0);
 
         //Assert
-        Assert.Equal(userType?.Name, "Editor");
+        Assert.Equal("Editor", userType?.Name);
     }
 
     [Fact]
@@ -31,7 +31,7 @@ public class EnumerationTest
         var editor2 = UserType.FromValue(0);
     
         // Assert
-        Assert.True(editor1?.Equals(editor2));
+        Assert.Equal(editor1, editor2);
     }
 
     [Fact]
@@ -41,7 +41,7 @@ public class EnumerationTest
         var editor = UserType.FromValue(0);
     
         // Assert
-        Assert.Equal(editor?.ToString(), "Editor");
+        Assert.Equal("Editor", editor?.ToString());
     }
 
     private Entity CreateEntity() =>
