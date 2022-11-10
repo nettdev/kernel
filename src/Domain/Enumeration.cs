@@ -28,7 +28,7 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where 
             .Where(fieldInfo => enumerationType.IsAssignableFrom(fieldInfo.FieldType))
             .Select(fieldInfo => (TEnum?)fieldInfo.GetValue(null));
 
-        return fieldsForType.ToDictionary(x => x.Value);
+        return fieldsForType.ToDictionary(x => x?.Value ?? 0);
     }
 
     public bool Equals(Enumeration<TEnum>? other) =>
