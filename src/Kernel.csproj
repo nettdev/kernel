@@ -4,15 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>Mobnet.SharedKernel</RootNamespace>
-    <AssemblyName>Mobnet.SharedKernel</AssemblyName>
-    <PackageId>Mobnet.SharedKernel</PackageId>
-    <PackageVersion>10.20.30</PackageVersion>
-    <Title>Mobnet SharedKernel</Title>
+    <RootNamespace>Nett.Kernel</RootNamespace>
+    <AssemblyName>Nett.Kernel</AssemblyName>
+    <PackageId>Nett.Kernel</PackageId>
+    <PackageVersion>0.0.0</PackageVersion>
+    <Title>Nett Kernel</Title>
     <Authors>Jeziel Moura</Authors>
-    <Company>Mobnet</Company>
-    <PackageDescription>Shared Kernel for Mobnet Software Solutions</PackageDescription>
-    <RepositoryUrl>https://github.com/mobnet/shared-kernel</RepositoryUrl>
+    <Company>Nett Dev</Company>
+    <PackageDescription>Shared Kernel for Nett Dev</PackageDescription>
+    <RepositoryUrl>https://github.com/netttdev/kernel</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

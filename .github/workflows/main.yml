@@ -40,12 +40,12 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       
     - name: test
-      run: dotnet test --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura 
+      run: dotnet test --configuration Release --no-build  --collect:"XPlat Code Coverage" 
 
     - name: budge
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
-        filename: test/coverage.cobertura.xml
+        filename: ./TestResults/*/coverage.cobertura.xml
         badge: true
         fail_below_min: false
         format: markdown
@@ -61,12 +61,6 @@ jobs:
       with:
         recreate: true
         path: code-coverage-results.md
-
-    - name: install report generator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.11
-
-    - name: run report generator
-      run: reportgenerator -reports:"test/coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html
 
     - name: upload report
       uses: actions/upload-artifact@v3
