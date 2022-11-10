@@ -12,7 +12,7 @@
     <Authors>Jeziel Moura</Authors>
     <Company>Nett Dev</Company>
     <PackageDescription>Shared Kernel for Nett Dev</PackageDescription>
-    <RepositoryUrl>https://github.com/netttdev/kernel</RepositoryUrl>
+    <RepositoryUrl>https://github.com/nettdev/kernel</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
