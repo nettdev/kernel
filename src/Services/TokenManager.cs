@@ -40,7 +40,6 @@ public class TokenManager : ITokenManager
 
     public async Task<IEnumerable<Claim>> GetClaims(string token)
     {
-        IdentityModelEventSource.ShowPII = true;
         var secretKeyString = _configuration[SecrectConfiguration];
 		var secretKey = Encoding.UTF8.GetBytes(secretKeyString);
         var key = new SymmetricSecurityKey(secretKey);
