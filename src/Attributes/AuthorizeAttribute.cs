@@ -1,4 +1,4 @@
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class AuthorizeAttribute : Attribute

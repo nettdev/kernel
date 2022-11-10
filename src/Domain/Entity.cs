@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using MediatR;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 [ExcludeFromCodeCoverage]
 public class Entity : IEquatable<Entity>

@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
 using Moq;
 
-namespace Mobnet.SharedKernel.UnitTest;
+namespace Nett.SharedKernel.UnitTest;
 
 public class TokenManagerTests
 {

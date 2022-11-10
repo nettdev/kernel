@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 #nullable disable
 

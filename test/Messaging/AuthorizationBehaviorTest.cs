@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Moq;
 
-namespace Mobnet.SharedKernel.UnitTest;
+namespace Nett.SharedKernel.UnitTest;
 
 #nullable disable
 

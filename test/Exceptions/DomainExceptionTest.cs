@@ -1,4 +1,4 @@
-namespace Mobnet.SharedKernel.UnitTest;
+namespace Nett.SharedKernel.UnitTest;
 
 public class DomainExceptionTest
 {

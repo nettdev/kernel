@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {

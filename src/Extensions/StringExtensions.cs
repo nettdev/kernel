@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using static System.String;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 public static class StringExtensions
 {

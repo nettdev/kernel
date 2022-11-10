@@ -2,7 +2,7 @@ using FluentValidation;
 using MediatR;
 using Moq;
 
-namespace Mobnet.SharedKernel.UnitTest;
+namespace Nett.SharedKernel.UnitTest;
 
 public class ValidationBehaviorTest
 {

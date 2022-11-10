@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 [ExcludeFromCodeCoverage]
 public class DomainException : ValidationException

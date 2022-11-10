@@ -4,7 +4,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 [ExcludeFromCodeCoverage]
 public class ExceptionHandlingMiddleware

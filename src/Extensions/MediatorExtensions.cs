@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 public static class MediatorExtensions
 {

@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 public class TokenManager : ITokenManager
 {

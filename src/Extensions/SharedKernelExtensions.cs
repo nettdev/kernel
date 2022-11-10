@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 [ExcludeFromCodeCoverage]
 public static class SharedKernelExtensions

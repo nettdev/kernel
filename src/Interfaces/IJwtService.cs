@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace Mobnet.SharedKernel;
+namespace Nett.SharedKernel;
 
 public interface ITokenManager
 {
