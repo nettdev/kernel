@@ -1,7 +1,9 @@
+using System.Security.Claims;
+
 namespace Mobnet.SharedKernel;
 
-public interface IJwtService
+public interface ITokenManager
 {
-    string CreateToken(IEnumerable<Tuple<string, string>> values);
-    Task<IEnumerable<Tuple<string, string>>> GetClaims(string token);
+    Task<string> Create(IEnumerable<Claim> claims);
+    Task<IEnumerable<Claim>> GetClaims(string token);
 }

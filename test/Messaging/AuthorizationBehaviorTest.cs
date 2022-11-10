@@ -10,11 +10,13 @@ namespace Mobnet.SharedKernel.UnitTest;
 public class AuthorizationBehaviorTest
 {
     private Mock<IHttpContextAccessor> _httpContextAcessorMock;
+    private Mock<ITokenManager> _tokenManagerMock;
     private Mock<RequestHandlerDelegate<Unit>> _requestHandlerDelegateMock;
 
     public AuthorizationBehaviorTest()
     {
         _httpContextAcessorMock = new Mock<IHttpContextAccessor>();
+        _tokenManagerMock = new Mock<ITokenManager>();
         _requestHandlerDelegateMock = new Mock<RequestHandlerDelegate<Unit>>();
     }
     
@@ -23,7 +25,7 @@ public class AuthorizationBehaviorTest
     {
         //Arrange        
         var command = new AddUserCommand();
-        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object);
+        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object, _tokenManagerMock.Object);
     
         //Act
         Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
@@ -37,7 +39,7 @@ public class AuthorizationBehaviorTest
     {
         //Arrange        
         var command = new AddUserCommand();
-        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object);
+        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object, _tokenManagerMock.Object);
 
         _httpContextAcessorMock
             .Setup(s => s.HttpContext.User.Claims)
@@ -55,11 +57,20 @@ public class AuthorizationBehaviorTest
     {
         //Arrange        
         var command = new AddUserCommand();
-        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object);
+        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object, _tokenManagerMock.Object);
+
+        var claimsValues = new List<Claim>()
+        { 
+            new(ClaimTypes.Name, "FakeName"),
+            new(ClaimTypes.Email, "email@gmail.com"),  
+            new(ClaimTypes.Role, "AddUserCommand"),
+        };
 
         _httpContextAcessorMock
             .Setup(s => s.HttpContext.User.Claims)
             .Returns(new List<Claim>{new Claim(ClaimTypes.Role, nameof(AddUserCommand))});
+
+        _tokenManagerMock.Setup(s => s.GetClaims(It.IsAny<string>())).ReturnsAsync(claimsValues);
     
         //Act
         var result = await behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
@@ -73,12 +84,4 @@ public class AuthorizationBehaviorTest
 class AddUserCommand : IRequest
 {
     public string Name { get; set; }
-}
-
-class AddUserCommandHandler : IRequestHandler<AddUserCommand>
-{
-    public Task<Unit> Handle(AddUserCommand request, CancellationToken cancellationToken)
-    {
-        return Unit.Task;
-    }
 }

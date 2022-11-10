@@ -8,6 +8,6 @@ public static class SharedKernelExtensions
 {
     public static void AddSharedKernel(this IServiceCollection services)
     {
-        services.AddScoped<IJwtService, JwtService>();
+        services.AddScoped<ITokenManager, TokenManager>();
     }
 }

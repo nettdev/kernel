@@ -1,10 +1,14 @@
 namespace Mobnet.SharedKernel;
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class)]
 public class AuthorizeAttribute : Attribute
 {
     public string Resource { get; }
+    public bool CheckTentantAccess { get; }
 
-    public AuthorizeAttribute(string resourceName) =>
-        Resource = resourceName;
+    public AuthorizeAttribute(string resource, bool checkTentantAccess = true)
+    {
+        Resource = resource;
+        CheckTentantAccess = checkTentantAccess;
+    }
 }
