@@ -21,7 +21,7 @@ public class AuthorizationBehaviorTest
     }
     
     [Fact]
-    public void Handler_Unauthenticad_ThrowUnauthenticatedException()
+    public async Task Handler_Unauthenticad_ThrowUnauthenticatedException()
     {
         //Arrange        
         var command = new AddUserCommand();
@@ -31,25 +31,74 @@ public class AuthorizationBehaviorTest
         Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
     
         //Assert
-        Assert.ThrowsAsync<UnauthenticatedException>(act);
+        await Assert.ThrowsAsync<UnauthenticatedException>(act);
     }
 
     [Fact]
-    public void Handler_DontHavePermission_ThrowUnauthorizedException()
+    public async Task Handler_DontHavePermission_ThrowUnauthorizedException()
+    {
+        //Arrange        
+        var command = new AddUserCommand();
+        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object, _tokenManagerMock.Object);
+
+        _tokenManagerMock.Setup(s => s.GetClaims(It.IsAny<string>())).ReturnsAsync(new List<Claim>
+        { 
+            new Claim(ClaimTypes.Role, "ListUserQuery") 
+        });
+    
+        //Act
+        Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
+    
+        //Assert
+        await Assert.ThrowsAsync<UnauthorizedException>(act);
+    }
+
+    [Fact]
+    public async Task Handler_AnotherTentant_ThrowUnauthorizedException()
     {
         //Arrange        
         var command = new AddUserCommand();
         var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object, _tokenManagerMock.Object);
 
         _httpContextAcessorMock
-            .Setup(s => s.HttpContext.User.Claims)
-            .Returns(new List<Claim>{new Claim(ClaimTypes.Role, "")});
+            .Setup(s => s.HttpContext.Request.Headers["x-tentant"])
+            .Returns(Guid.NewGuid().ToString());
+
+        _tokenManagerMock.Setup(s => s.GetClaims(It.IsAny<string>())).ReturnsAsync(new List<Claim>
+        { 
+            new Claim(ClaimTypes.Role, "AddUserCommand") 
+        });
     
         //Act
         Task act() => behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
     
         //Assert
-        Assert.ThrowsAsync<UnauthorizedException>(act);
+        await Assert.ThrowsAsync<UnauthorizedException>(act);
+    }
+
+    [Fact]
+    public async Task Handler_CorrectTentant_ReturnUnit()
+    {
+        //Arrange        
+        var command = new AddUserCommand();
+        var behavior = new AuthorizationBehavior<AddUserCommand, Unit>(_httpContextAcessorMock.Object, _tokenManagerMock.Object);
+        var tentantId = Guid.NewGuid().ToString();
+
+        _httpContextAcessorMock
+            .Setup(s => s.HttpContext.Request.Headers["x-tentant"])
+            .Returns(tentantId);
+
+        _tokenManagerMock.Setup(s => s.GetClaims(It.IsAny<string>())).ReturnsAsync(new List<Claim>
+        { 
+            new Claim(ClaimTypes.Role, "AddUserCommand"),
+            new Claim(ClaimTypes.GroupSid, tentantId) 
+        });
+    
+        //Act
+        var result = await behavior.Handle(command, _requestHandlerDelegateMock.Object, default(CancellationToken));
+    
+        //Assert
+        Assert.IsType<Unit>(result);
     }
 
     [Fact]

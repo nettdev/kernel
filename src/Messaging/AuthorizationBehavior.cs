@@ -18,7 +18,7 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var authorization = Attribute.GetCustomAttribute(request.GetType(), typeof(AuthorizeAttribute)) as AuthorizeAttribute;
-        var accountIdHeader = _httpContextAcessor?.HttpContext?.Request?.Headers["x-account"] ?? string.Empty;
+        var accountIdHeader = _httpContextAcessor?.HttpContext?.Request?.Headers["x-tentant"] ?? string.Empty;
         var token = _httpContextAcessor?.HttpContext?.Request?.Headers["Authorization"] ?? string.Empty;
         var claims = await _tokenManager.GetClaims(token);
         var resources = claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.Role))?.Value;
