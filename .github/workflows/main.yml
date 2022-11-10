@@ -22,11 +22,15 @@ jobs:
     - name: build
       run: dotnet build --configuration Release --no-restore
 
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
     - name: test
       run: dotnet test --configuration Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura 
 
     - name: budge
-      uses: irongut/CodeCoverageSummary@v1.3.0
+      uses: irongut/CodeCoverageSummary@v1.2.0
       with:
         filename: test/coverage.cobertura.xml
         badge: true
