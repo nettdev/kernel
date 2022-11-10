@@ -73,7 +73,7 @@ public class TokenManagerTests
         var tokenManager = new TokenManager(_configuration.Object);
         var claimsValues = new List<Claim>()
         { 
-            new(ClaimTypes.GroupSid, "FakeAccountId"),
+            new(ClaimTypes.GroupSid, "FakeTentantId"),
             new(ClaimTypes.Name, "FakeName"),
             new(ClaimTypes.Email, "email@gmail.com"),  
             new(ClaimTypes.Role, "AddUser;ReadUser"),
@@ -87,9 +87,9 @@ public class TokenManagerTests
         var claims = await tokenManager.GetClaims(token);
     
         //Assert
-        Assert.True(claims.Any(c => c.Type.Equals(ClaimTypes.GroupSid)));
-        Assert.True(claims.Any(c => c.Type.Equals(ClaimTypes.Name)));
-        Assert.True(claims.Any(c => c.Type.Equals(ClaimTypes.Email)));
-        Assert.True(claims.Any(c => c.Type.Equals(ClaimTypes.Role)));
+        Assert.True(claims.First(c => c.Type.Equals(ClaimTypes.GroupSid)).Value.Equals("FakeTentantId"));
+        Assert.True(claims.First(c => c.Type.Equals(ClaimTypes.Name)).Value.Equals("FakeName"));
+        Assert.True(claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value.Equals("email@gmail.com"));
+        Assert.True(claims.First(c => c.Type.Equals(ClaimTypes.Role)).Value.Equals("AddUser;ReadUser"));
     }
 }
