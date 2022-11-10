@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace Mobnet.SharedKernel;
 
@@ -18,8 +19,8 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var authorization = Attribute.GetCustomAttribute(request.GetType(), typeof(AuthorizeAttribute)) as AuthorizeAttribute;
-        var accountIdHeader = _httpContextAcessor?.HttpContext?.Request?.Headers["x-tentant"] ?? string.Empty;
-        var token = _httpContextAcessor?.HttpContext?.Request?.Headers["Authorization"] ?? string.Empty;
+        var accountIdHeader = GetHeader(_httpContextAcessor?.HttpContext, "x-tentant");
+        var token = GetHeader(_httpContextAcessor?.HttpContext, "Authorization");
         var claims = await _tokenManager.GetClaims(token);
         var resources = claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.Role))?.Value;
         var accountId = claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.GroupSid))?.Value ?? string.Empty;
@@ -37,5 +38,13 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         }
 
         return await next();
+    }
+
+    private string GetHeader(HttpContext? context, string key)
+    {
+        if (context?.Request?.Headers[key] is StringValues value)
+            return value.ToString();
+
+        return string.Empty;
     }
 }

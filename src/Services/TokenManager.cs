@@ -23,7 +23,7 @@ public class TokenManager : ITokenManager
 
         var claimsIdentity = new ClaimsIdentity(claims);
         var tokenHandler = new JwtSecurityTokenHandler();
-        var secretKeyString = _configuration[SecrectConfiguration];
+        var secretKeyString = _configuration[SecrectConfiguration] ?? string.Empty;
 		var secretKey = Encoding.UTF8.GetBytes(secretKeyString);
 		var tokenDescriptor = new SecurityTokenDescriptor
 		{
@@ -39,7 +39,7 @@ public class TokenManager : ITokenManager
 
     public async Task<IEnumerable<Claim>> GetClaims(string token)
     {
-        var secretKeyString = _configuration[SecrectConfiguration];
+        var secretKeyString = _configuration[SecrectConfiguration] ?? string.Empty;
 		var secretKey = Encoding.UTF8.GetBytes(secretKeyString);
         var key = new SymmetricSecurityKey(secretKey);
         var tokenHandler = new JwtSecurityTokenHandler();
