@@ -20,14 +20,6 @@ public class ExceptionHandlingMiddleware
         {
             await _next(context);
         }
-        catch(UnauthenticatedException)
-        {
-            await CreateResponse(context, HttpStatusCode.Unauthorized);
-        }
-        catch(UnauthorizedException)
-        {
-            await CreateResponse(context, HttpStatusCode.Forbidden);
-        }
         catch (ValidationException exception)
         {
             await CreateResponse(context, HttpStatusCode.BadRequest, exception);

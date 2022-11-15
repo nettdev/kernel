@@ -51,3 +51,8 @@ class AddUserCommandValidator : AbstractValidator<AddUserCommand>
         RuleFor(c => c.Name).NotEmpty().WithMessage("Error");
     }
 }
+
+class AddUserCommand : IRequest
+{
+    public string Name { get; set; } = string.Empty;
+}

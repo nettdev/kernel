@@ -1,9 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Nett.Kernel;
 
-[ExcludeFromCodeCoverage]
 public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>> where TEnum : Enumeration<TEnum>
 {
     private static readonly Dictionary<int, TEnum?> _enumerations = CreateEnumerations();
