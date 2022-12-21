@@ -1,1 +1,0 @@
-sed -i'' -e $"s/<PackageVersion>.*<\/PackageVersion>/<PackageVersion>$1<\/PackageVersion>/g" src/Kernel.csproj

@@ -22,7 +22,15 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.3.0" />
     <PackageReference Include="MediatR" Version="11.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Using Include="System.Diagnostics.CodeAnalysis" />
+    <Using Include="System.Net" />
+    <Using Include="Microsoft.AspNetCore.Http;" />
+    <Using Include="FluentValidation" />
+    <Using Include="FluentValidation.Results" />
   </ItemGroup>
 
 </Project>

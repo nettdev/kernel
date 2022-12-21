@@ -1,9 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Net;
-using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
-
 namespace Nett.Kernel;
 
 [ExcludeFromCodeCoverage]
@@ -20,9 +14,17 @@ public class ExceptionHandlingMiddleware
         {
             await _next(context);
         }
+        catch (AuthenticationException)
+        {
+            await CreateResponse(context, 401);
+        }
+        catch (AuthorizationException)
+        {
+            await CreateResponse(context, 403);
+        }
         catch (ValidationException exception)
         {
-            await CreateResponse(context, HttpStatusCode.BadRequest, exception);
+            await CreateResponse(context, 400, exception);
         }
         catch (Exception)
         {
@@ -30,9 +32,9 @@ public class ExceptionHandlingMiddleware
         }
     }
 
-    private async Task CreateResponse(HttpContext context, HttpStatusCode statusCode, ValidationException? exception = null)
+    private async Task CreateResponse(HttpContext context, int statusCode, ValidationException? ex = null)
     {
-        context.Response.StatusCode = ((int)statusCode);
-        await context.Response.WriteAsJsonAsync(exception?.Errors ?? Enumerable.Empty<ValidationFailure>());
+        context.Response.StatusCode = statusCode;
+        await context.Response.WriteAsJsonAsync(ex?.Errors ?? Enumerable.Empty<ValidationFailure>());
     }
 }

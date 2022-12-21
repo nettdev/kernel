@@ -20,7 +20,7 @@ jobs:
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
     - name: set release version
-      run: ./set-version.sh ${{ steps.get_version.outputs.VERSION }}
+      run: sed -i'' -e $"s/<PackageVersion>.*<\/PackageVersion>/<PackageVersion>${{ steps.get_version.outputs.VERSION }}<\/PackageVersion>/g" src/Kernel.csproj
 
     - name: dotnet pack
       run: dotnet pack "src/Kernel.csproj" -c Release -o ./dist
