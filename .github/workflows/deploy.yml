@@ -16,7 +16,7 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: set release version
-      run: sed -i'' -e $'s/0.0.0/$GITHUB_REF_NAME/g' src/Kernel.csproj
+      run: sed -i'' -e $'s/0.0.0/${{ github.ref_name }}/g' src/Kernel.csproj
 
     - name: dotnet pack
       run: dotnet pack "src/Kernel.csproj" -c Release -o ./dist
