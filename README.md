@@ -16,5 +16,6 @@ This repository contais some utilities class for many asp.net core applications.
 * Domain Exception
 * Authentication Exception
 * AuthorizationException
+* JWT Bearer Service
 
 Feel free to contribute
