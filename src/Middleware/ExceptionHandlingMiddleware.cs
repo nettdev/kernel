@@ -18,9 +18,9 @@ public class ExceptionHandlingMiddleware
         {
             await CreateResponse(context, 401);
         }
-        catch (AuthorizationException)
+        catch (AuthorizationException exception)
         {
-            await CreateResponse(context, 403);
+            await CreateResponse(context, 403, exception);
         }
         catch (ValidationException exception)
         {
