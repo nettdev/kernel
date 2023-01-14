@@ -1,4 +1,4 @@
-name: dotnet
+name: main
 on:
   push:
     branches: [ main ]
@@ -42,5 +42,5 @@ jobs:
     - name: test
       run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
-    - name: Codecov
+    - name: coverage
       uses: codecov/codecov-action@v3
