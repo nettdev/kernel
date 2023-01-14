@@ -58,7 +58,6 @@ public class SpecificationTest
     [InlineData(true, false, true)]
     [InlineData(true, true, false)]
     [InlineData(false, false, false)]
-    [InlineData(false, false, false)]
     public void Or_TwoSpec_TrueIfLeftIsNotSatisfied(bool isAdmin, bool isActive, bool expected)
     {
         //Arrange
