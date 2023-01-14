@@ -1,5 +1,5 @@
 # Nett Shared Kernel
-![Code Coverage](https://img.shields.io/badge/Code%20Coverage-95%25-success?style=flat)
+[![codecov](https://codecov.io/gh/nettdev/kernel/branch/main/graph/badge.svg?token=DEHP19G5DS)](https://codecov.io/gh/nettdev/kernel)
 
 Shared kernel used for Nett Dev organization. 
 This repository contais some utilities class for many asp.net core applications.
