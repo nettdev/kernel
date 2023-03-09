@@ -7,7 +7,6 @@
     <RootNamespace>Nett.Kernel</RootNamespace>
     <AssemblyName>Nett.Kernel</AssemblyName>
     <PackageId>Nett.Kernel</PackageId>
-    <PackageVersion>0.0.0</PackageVersion>
     <Title>Nett Kernel</Title>
     <Authors>Jeziel Moura</Authors>
     <Company>Nett Dev</Company>
